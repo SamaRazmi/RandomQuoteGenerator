@@ -1,0 +1,30 @@
+# Adding a new list
+POST http://localhost:3000/api/lists
+Content-Type: application/json
+
+{
+  "name": "Favorite Quotes"
+}
+
+DELETE http://localhost:3000/api/lists/6606212a5ac076d271e27df8/quotes/66062e585ac076d271e27e89
+
+GET http://localhost:3000/api/lists
+
+# Adding quotes to the new list
+POST http://localhost:3000/api/lists/6605fb440fea45c76fedda12/quotes
+Content-Type: application/json
+
+{
+  "text": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+  "author": "Nelson Mandela",
+  "category": "Inspiration"
+}
+
+POST http://localhost:3000/api/lists/6605fb440fea45c76fedda12/quotes
+Content-Type: application/json
+
+{
+  "text": "The only way to do great work is to love what you do.",
+  "author": "Steve Jobs",
+  "category": "Motivation"
+}

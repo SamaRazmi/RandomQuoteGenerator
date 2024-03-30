@@ -1,0 +1,37 @@
+name: Testing main Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  simple_test_pipeline:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: ./client
+
+      - name: Install backend dependencies
+        run: npm install
+        working-directory: ./server
+
+      - name: Run frontend tests
+        run: npm run test
+        working-directory: ./client
+
+      - name: Run backend tests with MongoDB URI
+        env:
+          MONGODB_URI: 'mongodb+srv://samaneflower69:6499106a@quotes.irv7n0g.mongodb.net/Quotes?retryWrites=true&w=majority&appName=Quote'
+        run: npm run test
+        working-directory: ./server

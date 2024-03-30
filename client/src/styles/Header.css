@@ -1,0 +1,8 @@
+.header {
+  background: linear-gradient(to right, #198870, #74df94);
+  color: #f4f2f2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-bottom: none;
+  text-align: center;
+}

@@ -1,0 +1,95 @@
+.quote-list-manager {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.add-list-section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.add-list-section input {
+  width: 50%;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+.button-style {
+  width: auto;
+  padding: 8px 12px;
+  background-color: #dc3545; /* Red button color */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.list-container {
+  margin-bottom: 20px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+}
+
+.list-item span {
+  flex: 1;
+  font-size: 16px; /* Increased font size */
+  font-weight: bold; /* Bold font weight */
+  color: green; /* Green text color */
+  margin-left: 10px; /* Added indentation */
+}
+
+.add-list-section button {
+  width: auto;
+  padding: 8px 12px;
+  background-color: #dc3545; /* Red button color */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.quote-list {
+  padding-left: 0; /* Remove indentation for quotes */
+  list-style-type: none;
+}
+
+.quote-item {
+  display: flex;
+  align-items: center;
+}
+
+.quote-item .circle {
+  display: inline-block; /* Display circles inline */
+  width: 10px; /* Reduced size for circles */
+  height: 10px; /* Reduced size for circles */
+  border-radius: 50%;
+  margin-right: 5px; /* Adjusted margin for circles */
+}
+
+.quote-item .empty {
+  border: 1px solid black; /* Add border for empty circle */
+}
+
+.edit-text {
+  width: 50%;
+}
+
+.quote-item {
+  padding-left: 0; /* Align quotes to the left */
+}
+
+.edit-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.edit-container input {
+  margin-right: 5px; /* Adjust spacing between input and button */
+}
+
+.button-container {
+  display: flex;
+  gap: 5px; /* Adjust spacing between buttons */
+}

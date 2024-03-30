@@ -1,0 +1,88 @@
+/* src/styles/Contact.css */
+
+.container {
+  max-width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.bg-info {
+  background-color: #17a2b8;
+  border-radius: 1rem;
+  color: #fff;
+  width: 450px;
+  margin: 5px;
+  margin-left: -10px;
+  padding-left: 63%;
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 2rem;
+}
+
+.mb-3 {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem; /* Decrease margin-bottom for tighter spacing */
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+}
+
+.btn-outline-primary {
+  border-radius: 0.5rem;
+  color: #e7edf4;
+  border-color: #007bff;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  width: 30%;
+  margin-left: 63%;
+  margin-bottom: 10px;
+}
+
+.ms-3 {
+  margin-left: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Updated styles for the image */
+.about-img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Use grid for layout */
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px; /* Adjust the gap between columns as needed */
+}
+
+.col-md-8 {
+  grid-column: span 6; /* 6 columns for the form */
+}
+
+.col-md-4 {
+  grid-column: span 4; /* 4 columns for the image */
+  display: flex;
+  align-items: center;
+}
