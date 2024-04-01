@@ -55,5 +55,6 @@ describe('GET /api/lists', () => {
 afterAll(async () => {
   // Closes connection after all tests run
   const server = await serverPromise;
+  await Lists.db.close(); // Close the MongoDB connection used by Lists model
   server.close();
 });
