@@ -35,3 +35,11 @@ jobs:
           MONGODB_URI: 'mongodb+srv://samaneflower69:6499106a@quotes.irv7n0g.mongodb.net/Quotes?retryWrites=true&w=majority&appName=Quote'
         run: npm run test
         working-directory: ./server
+
+      - name: Run server deploy hook
+        run: |
+          curl -X GET ${{ secrets.SERVER_DEPLOYMENT_HOOK }}
+
+      - name: Run client deploy hook
+        run: |
+          curl -X GET ${{ secrets.CLIENT_DEPLOYMENT_HOOK }}
