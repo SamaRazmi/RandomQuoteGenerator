@@ -10,7 +10,7 @@ Server: Backend logic and API handling.
 
 Client: Frontend interface for user interacti
 
-My DataBase is in this address:mongodb+srv://samaneflower69:6499106a@quotes.irv7n0g.mongodb.net/Quotes?retryWrites=true&w=majority&appName=Quote
+My DataBase is in this address:"mongodb+srv://samaneflower69:6499106a@quotes.irv7n0g.mongodb.net/Quotes?retryWrites=true&w=majority&appName=Quote"
 
 The static address(front-end) on render site is:https://randomquotegenerator-e8a5.onrender.com
 
