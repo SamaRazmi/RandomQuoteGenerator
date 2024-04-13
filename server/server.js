@@ -11,7 +11,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+// Allow requests from your frontend React application hosted on Render
+app.use(cors({ origin: 'https://randomquotegenerator-e8a5.onrender.com' }));
+
+// Separate CORS configuration for other origins
 app.use(cors());
+
 app.use(morgan('dev'));
 app.use('/api/auth', authRouter);
 app.use('/api/auth', loginRouter);
