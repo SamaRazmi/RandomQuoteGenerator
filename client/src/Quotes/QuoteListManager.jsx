@@ -25,6 +25,11 @@ function QuoteListManager() {
   const [editQuoteCategory, setEditQuoteCategory] = useState(''); // New state for category
   const [searchQuery, setSearchQuery] = useState('');
 
+  const apiUrl =
+    window.location.hostname === 'localhost'
+      ? 'http://localhost:3000/api'
+      : 'https://crandomquotegenerator.onrender.com/api';
+
   // eslint-disable-next-line no-unused-vars
   const [lists, setLists] = useState([]);
   // eslint-disable-next-line no-unused-vars
@@ -34,7 +39,7 @@ function QuoteListManager() {
 
   const fetchLists = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/lists');
+      const response = await axios.get(`${apiUrl}/lists`);
       console.log('Fetched Data:', response.data);
       setLists(response.data);
 
@@ -50,6 +55,7 @@ function QuoteListManager() {
 
   useEffect(() => {
     fetchLists();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // Log all selectedListIds after the useEffect
   console.log('All Selected List IDs:', selectedListIds);
@@ -74,7 +80,7 @@ function QuoteListManager() {
 
     // Make axios request to delete the list
     axios
-      .delete(`http://localhost:3000/api/lists/${id}`)
+      .delete(`${apiUrl}/lists/${id}`)
       .then((response) => {
         console.log('List deleted successfully:', response.data);
         // Update state to remove the deleted list
@@ -101,7 +107,7 @@ function QuoteListManager() {
       const requestData = { name: inputValue };
 
       axios
-        .post('http://localhost:3000/api/lists', requestData)
+        .post(`${apiUrl}/lists`, requestData)
         .then((response) => {
           console.log('List added:', response.data);
           // Update local state
@@ -123,7 +129,7 @@ function QuoteListManager() {
       const requestData = { name: newName };
 
       axios
-        .put(`http://localhost:3000/api/lists/${id}`, requestData)
+        .put(`${apiUrl}/lists/${id}`, requestData)
         .then((response) => {
           console.log('List updated:', response.data);
           // Update local state with the new value
@@ -158,10 +164,7 @@ function QuoteListManager() {
       };
 
       axios
-        .post(
-          `http://localhost:3000/api/lists/${selectedListId}/quotes`,
-          requestData
-        )
+        .post(`${apiUrl}/lists/${selectedListId}/quotes`, requestData)
         .then((response) => {
           console.log('Quote added:', response.data);
 
@@ -211,7 +214,7 @@ function QuoteListManager() {
 
       // Make axios request to update the quote
       axios
-        .put(`http://localhost:3000/api/lists/${listId}/quotes/${quoteId}`, {
+        .put(`${apiUrl}/lists/${listId}/quotes/${quoteId}`, {
           text: newText,
           author: newAuthor,
           category: newCategory,
@@ -254,7 +257,7 @@ function QuoteListManager() {
 
     // Make axios request to delete the quote
     axios
-      .delete(`http://localhost:3000/api/lists/${listId}/quotes/${quoteId}`)
+      .delete(`${apiUrl}/lists/${listId}/quotes/${quoteId}`)
       .then((response) => {
         console.log('Quote deleted successfully:', response.data);
         // Update state to remove the deleted quote
@@ -472,7 +475,7 @@ function QuoteListManager() {
       <div className="search-section">
         <input
           type="text"
-          placeholder="Search list by name()..."
+          placeholder="Search list by name(LocalStorage)..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="button-style"

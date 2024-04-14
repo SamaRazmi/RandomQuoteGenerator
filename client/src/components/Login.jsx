@@ -15,38 +15,31 @@ const Login = ({ onLogin }) => {
       return;
     }
 
+    const apiUrl =
+      window.location.hostname === 'localhost'
+        ? 'http://localhost:3000/api/auth/login'
+        : 'https://crandomquotegenerator.onrender.com/api/auth/login';
+
     try {
-      // Sending request to local address
-      const localResponse = await fetch(
-        'http://localhost:3000/api/auth/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name: username, password }),
-        }
-      );
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: username, password }),
+      });
 
-      const localData = await localResponse.json();
+      const data = await response.json();
 
-      if (localResponse.ok) {
+      if (response.ok) {
         // Save user info in cookie upon successful login
-        Cookies.set('user', JSON.stringify(localData.user));
-        console.log('User information saved in cookie:', localData.user); // Log user info
-        onLogin(localData.user);
+        Cookies.set('user', JSON.stringify(data.user));
+        console.log('User information saved in cookie:', data.user); // Log user info
+        onLogin(data.user);
         navigate('/');
-        return; // Exiting the function to prevent further execution
       } else {
-        alert(localData.message);
+        alert(data.message);
       }
-
-      // Sending request to external address
-      const externalResponse = await fetch(
-        'https://crandomquotegenerator.onrender.com/api/auth/login'
-      );
-      const externalData = await externalResponse.json();
-      console.log('Quote from external API:', externalData);
     } catch (error) {
       console.error('Error logging in:', error);
       alert('Login failed. Please try again later.');
@@ -67,6 +60,7 @@ const Login = ({ onLogin }) => {
             <input
               type="text"
               id="username"
+              placeholder="please enter your name"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -76,6 +70,7 @@ const Login = ({ onLogin }) => {
             <input
               type="password"
               id="password"
+              placeholder="please enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
