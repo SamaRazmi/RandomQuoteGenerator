@@ -25,21 +25,44 @@ const Register = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
+      // Sending request to local address
+      const localResponse = await fetch(
+        'http://localhost:3000/api/auth/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
-      if (response.ok) {
+      if (localResponse.ok) {
         // Registration successful, navigate to login page
         navigate('/login');
+        return; // Exiting the function to prevent further execution
       } else {
         // Registration failed
-        const data = await response.json();
-        alert(data.message); // Display error message
+        const localData = await localResponse.json();
+        alert(localData.message); // Display error message
+      }
+
+      // Sending request to external address
+      const externalResponse = await fetch(
+        'https://crandomquotegenerator.onrender.com/',
+        {
+          method: 'POST', // Assuming the external API accepts POST requests
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      if (externalResponse.ok) {
+        // Handle successful response from external API if needed
+      } else {
+        // Handle failed response from external API if needed
       }
     } catch (error) {
       console.error('Error registering user:', error);

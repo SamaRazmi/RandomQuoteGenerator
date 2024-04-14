@@ -16,25 +16,37 @@ const Login = ({ onLogin }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: username, password }),
-      });
+      // Sending request to local address
+      const localResponse = await fetch(
+        'http://localhost:3000/api/auth/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: username, password }),
+        }
+      );
 
-      const data = await response.json();
+      const localData = await localResponse.json();
 
-      if (response.ok) {
+      if (localResponse.ok) {
         // Save user info in cookie upon successful login
-        Cookies.set('user', JSON.stringify(data.user));
-        console.log('User information saved in cookie:', data.user); // Log user info
-        onLogin(data.user);
+        Cookies.set('user', JSON.stringify(localData.user));
+        console.log('User information saved in cookie:', localData.user); // Log user info
+        onLogin(localData.user);
         navigate('/');
+        return; // Exiting the function to prevent further execution
       } else {
-        alert(data.message);
+        alert(localData.message);
       }
+
+      // Sending request to external address
+      const externalResponse = await fetch(
+        'https://crandomquotegenerator.onrender.com/'
+      );
+      const externalData = await externalResponse.json();
+      console.log('Quote from external API:', externalData);
     } catch (error) {
       console.error('Error logging in:', error);
       alert('Login failed. Please try again later.');
