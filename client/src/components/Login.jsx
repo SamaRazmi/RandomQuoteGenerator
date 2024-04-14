@@ -43,7 +43,7 @@ const Login = ({ onLogin }) => {
 
       // Sending request to external address
       const externalResponse = await fetch(
-        'https://crandomquotegenerator.onrender.com/'
+        'https://crandomquotegenerator.onrender.com/api/auth/login'
       );
       const externalData = await externalResponse.json();
       console.log('Quote from external API:', externalData);

@@ -49,7 +49,7 @@ const Register = () => {
 
       // Sending request to external address
       const externalResponse = await fetch(
-        'https://crandomquotegenerator.onrender.com/',
+        'https://crandomquotegenerator.onrender.com/api/auth/register',
         {
           method: 'POST', // Assuming the external API accepts POST requests
           headers: {
